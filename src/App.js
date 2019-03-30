@@ -30,9 +30,9 @@ class App extends Component {
   nameChangedHandler = (event) => {
     this.setState({
       persons: [
-        { name: 'John', age: 33 },
+        { name: 'John111', age: 33 },
         { name: event.target.value, age: 40 },
-        { name: 'Steph', age: 70 }
+        { name: 'Steph1111', age: 70 }
       ]
     });
     console.log(event.target.value);
@@ -40,11 +40,20 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor: 'pink',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
     return (
       <div className="App" >
         <h1>Hello</h1>
         <p>It is working</p>
-        <button onClick={() => this.switchNameHandler("MAX111")}>Switch Name</button>
+        <button
+          style={style}
+          onClick={() => this.switchNameHandler("MAX111")}>Switch Name</button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age} />
