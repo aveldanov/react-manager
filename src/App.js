@@ -2,23 +2,34 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
+
+
+
 class App extends Component {
   state = {
     persons: [
       { name: 'Max', age: 33 },
       { name: 'John', age: 40 },
       { name: 'Steph', age: 70 }
-    ]
+    ],
+    otherState: 'some other state'
   }
 
   switchNameHandler = () => {
-    console.log('Was clicked');
-
+    //console.log('');
+    this.setState({
+      persons: [
+        { name: 'Max1', age: 33 },
+        { name: 'John', age: 40 },
+        { name: 'Steph', age: 70 }
+      ]
+    });
+    console.log(this.state.persons);
   }
 
   render() {
     return (
-      <div className="App">
+      <div className="App" >
         <h1>Hello</h1>
         <p>It is working</p>
         <button onClick={this.switchNameHandler}>Switch Name</button>
@@ -31,4 +42,7 @@ class App extends Component {
   }
 }
 
+
+
 export default App;
+
