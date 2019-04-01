@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+
 
 
 class App extends Component {
@@ -41,20 +42,14 @@ class App extends Component {
     //console.log(event.target.value);
   }
 
-  deletePersonHandler(personIndex) {
-    //const persons = this.state.persons.slice(); //creating a copy of the state
+  deletePersonHandler = (personIndex) => {
+
     const persons = [...this.state.persons]
     persons.splice(personIndex, 1)
 
     this.setState({
       persons: persons
     })
-
-
-    // console.log(persons);
-    // console.log(this.state.persons);
-
-
   }
 
   togglePersonsHandler = () => {
@@ -65,47 +60,30 @@ class App extends Component {
   }
 
   render() {
-    let btnClass = '';
 
     let persons = null;
     if (this.state.showPersons) {
       persons = (
         <div >
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}>
-              <Person
-
-                name={person.name}
-                age={person.age}
-                click={() => this.deletePersonHandler(index)}
-                changed={(event) => this.nameChangedHandler(event, person.id)}
-              />
-            </ErrorBoundary>
-          })}
-
-
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler}
+          />
         </div>
       );
-      btnClass = classes.Red;
     }
 
-    //let classes = ['red', 'bold'].join(' ');// "red bold"
-    let assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red); //assignedClasses = ['red']
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold); //assignedClasses = ['red bold']
-    }
+
 
     return (
       <div className={classes.App} >
-        <h1>Hello</h1>
-        <p className={assignedClasses.join(' ')}>It is working</p>
-        <button
-          className={btnClass}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
 
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePersonsHandler}
+        />
         {persons}
 
 
