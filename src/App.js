@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-//import person from './Person/Person';
-
 
 
 
@@ -68,11 +66,13 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'pink',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer'
+
     }
 
     let persons = null;
@@ -89,14 +89,26 @@ class App extends Component {
             />
           })}
 
+
         </div>
       );
+      style.backgroundColor = "red";
+
+    }
+
+    //let classes = ['red', 'bold'].join(' ');// "red bold"
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red'); //classes = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold'); //classes = ['red bold']
     }
 
     return (
       <div className="App" >
         <h1>Hello</h1>
-        <p>It is working</p>
+        <p className={classes.join(' ')}>It is working</p>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons</button>
