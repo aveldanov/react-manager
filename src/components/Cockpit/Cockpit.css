@@ -18,7 +18,8 @@
 
 .Cockpit button:hover{
   background-color: lightcyan;
-  color:black
+  color:black;
+  display: inline-block;
 }
 
 .Cockpit button.Red{
